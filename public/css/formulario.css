@@ -1,0 +1,228 @@
+
+#section-form {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#section-form h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+#formulario {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    padding: 35px;
+    border-radius: 4px;
+
+    /* esconde o que estrapola a div */
+    overflow: hidden;
+
+    animation-name: fade;
+    animation-duration: .7s;
+    animation-fill-mode: backwards;
+}
+
+#formulario label, #formulario input {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+#formulario label {
+    margin-top: 8px;
+}
+
+#formulario label:first-child {
+    margin-top: 0;
+}
+
+#formulario input, #formulario textarea {
+    width: 100%;
+    display: block;
+    margin-top: 8px;
+    padding: 7px;
+    font-size: 16px;
+    color: #7159c1;
+    border-radius: 2px;
+    border: 1px solid #ccddef;
+    outline-color: #7159c1;
+}
+
+#formulario textarea {
+    margin-bottom: 8px;
+    resize: none;
+}
+
+#formulario input, #formulario textarea, #formulario label {
+    animation-name: move;
+    animation-duration: .7s;
+    /*  */
+    animation-delay: 0.25s;
+    /* trabalha as ideias enquanto ainda não está acontecendo  */
+    animation-fill-mode: backwards;
+
+}
+
+#formulario button {
+    background-color: #7159c1;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px;
+    max-width: 100px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#formulario button:hover {
+    transform: scale(1.1)
+}
+
+/* Squares */
+body {
+    overflow: hidden;
+}
+
+.squares li {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255,255,255, 0.15);
+    display: block;
+    position: absolute;
+    bottom: -40px;
+    z-index: -1;
+
+    animation: up 2s infinite;
+    animation-direction: alternate;
+}
+
+
+/* Ativa aniamção quando o botão de enviar do formulário é precionado */
+#formulario.active {
+    animation: down 500ms forwards;
+    /*  Controla a curva de velocidade da animação, aonde alguns propriedades são atalhos práticos para pré-definições de cubic-bezier(),
+        aonde é possível criar a própria grade de velocidade.
+        
+        animation-timing-function: cubic-bezier(0, 1.2, 0.6, 0.2);
+
+        Além disso também se tem os steps, que controlam a quantidade de passos da animação. 
+
+        animation-timing-function: steps(5);
+    */
+    animation-timing-function: ease-in-out;
+}
+
+/* Ativa animação de validação, a verificação dos dados é feita no javascript */
+#formulario.validation-error {
+    /* Por padrão a animação tem a propriedade `animation-play-state` sempre definida como running mas podemos pausa-lá */
+    animation: nono 200ms linear, fade paused;
+    /* Controla a quantidade de vezes que a animação é ativada */
+    animation-iteration-count: 2;
+}
+
+/* Animações */
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+
+    }
+}
+
+@keyframes move {
+    from {
+        transform: translate3d(-200px,0,0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@keyframes down {
+    from {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+    to {
+        transform: translate3d(0, 80vh,0);
+    }
+    
+}
+
+/* Animações de validação */
+
+@keyframes nono {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    35% {
+        transform: translateX(-10%);
+    }
+    70% {
+        transform: translateX(10%);
+    }
+}
+
+/*  Animação squares */
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-800px) rotate(960deg);
+    }
+}
+
+/* waves teste */
+.waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -15;
+    max-height: 1200px;
+}
+
+.wave-1 {
+    width: 100vw;
+    background-color: rgba(255,255,255, 0.15);
+    z-index: -15;
+	animation: moveWave1 3s ease-out forwards;
+}
+
+
+@keyframes moveWave1 {
+    from {
+        height: 0;
+         /* transform: translateX(-2000px); */
+    }
+     to {
+        height: 100vh
+    }
+}
+

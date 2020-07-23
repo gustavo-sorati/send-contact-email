@@ -1,0 +1,34 @@
+{% extends "layout/index.njk" %}
+
+{% block head %}
+<link rel="stylesheet" href="/css/formulario.css">
+<title>Contato</title>
+{% endblock %}
+
+{% block content %}
+    {# formulário de contato #}
+    <section id="section-form">
+        <h1>Contact</h1>
+        <form action="/create" method="POST" id="formulario">
+
+        <label for="name">Nome</label> {# Nome #}
+        <input type="text" name="name" id="name" placeholder="Insert your first name">
+        <label for="sobrenome">Sobrenome</label> {# Sobrenome #}
+        <input type="text" name="sobrenome" id="sobrenome" placeholder="Insert your last name">
+        <label for="email">E-mail</label> {# E-mail #}
+        <input type="email" name="email" id="email" placeholder="Insert your e-mail for contact">
+        <label for="boxText">Em que posso ajudar?</label> {# Assunto #}
+        <textarea rows="6" name="boxText" id="boxText" placeholder="Enter text here..."></textarea>
+        <button type="submit" class="sendForm">Enviar</button>
+    </form>
+    </section>
+
+    {# <ul class="squares"></ul> #}
+    <div class="waves">
+        <div class="wave-1"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+   <script src="/script/contact/script.js"></script>
+{% endblock%}
